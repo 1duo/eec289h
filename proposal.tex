@@ -1,0 +1,67 @@
+\documentclass[11pt, oneside]{amsart} % use "amsart" | "article" for format
+\usepackage{geometry}
+\geometry{letterpaper}
+\usepackage{graphicx} % Use pdf, png, jpg, or eps§ with pdflatex
+\usepackage{amssymb}
+
+\title{Title}
+% title: - TBD
+%{Scene Classification with Deep Convolutional Neural Networks} or {Deep Convolutional Neural Networks for Recognizing Natural Scene Categories}
+\author{The Author}
+\date{} % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+% overview: describe the problem and main idea
+\section{Problem}
+	In this project, we are planning to recognize the semantic category of an image. Developing robust and geometrically invariant object representation remain a challenging problems in machine intelligence. 
+
+% related work: briefly describe related papers
+\section{Previous Work}
+Todo
+
+% technical approach: describe the feature representation(s) and algorithm(s) you will employ
+\section{Approach}
+\par
+A. Krizhevsky et al. trained a large, deep convolutional neural network to classify high-resolution images in ImageNet contest and obtained impressive results for highly challenging object recognition tasks using supervised learning. The features using this technique can also be used for scene categories. 
+
+\par
+Selective search can be used for generating possible object locations for object recognition or scene classification. This helps us reduce the processing time significantly without lose overall performance. 
+
+\par	
+Constructing three-level pyramid allows us to precisely matching of two collections of features in a high-dimensional appearance space despite of the spatial information.
+
+\par
+The scene classification will be done with a linear support vector machine (SVM).
+
+% experiments: Describe the experiments to evaluate your approach
+\section{Experiments}
+
+% others: describe software, libraries, language that you will use
+% and how you plan to share the work with your partner.
+\section{Matirials}
+	\subsection{Dataset}
+	MIT indoor 67 dataset
+	\subsection{Tools}
+	Caffe, Selective Search Software, LibSVM
+ 
+% references:
+ 
+% Beyond Bags of Features: Spatial Pyramid Matching for Recognizing Natural Scene Categories. S. Lazebnik, C. Schmid, and J. Ponce. CVPR 2006.
+ 
+% Object Bank: A High-Level Image Representation for Scene Classi?cation & Semantic Feature Sparsi?cation. L-J. Li, H. Su, E. Xing, and L. Fei-Fei. NIPS 2010.
+ 
+% ImageNet Classification with Deep Convolutional Neural Networks. A. Krizhevsky, I. Sutskever, and G. Hinton. NIPS 2012.
+ 
+% Selective Search for Object Recognition
+%J. R. R. Uijlings, K. E. A. van de Sande, T. Gevers, A. W. M. Smelters
+%In International Journal of Computer Vision 2013. 
+ 
+% LibSVM: http://www.csie.ntu.edu.tw/~cjlin/libsvm/
+ 
+% http://caffe.berkeleyvision.org/
+ 
+% MIT dataset: A. Quattoni, and A.Torralba. Recognizing Indoor Scenes. IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2009.
+
+\end{document}  
