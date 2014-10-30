@@ -23,7 +23,6 @@
 \section{Problem}
 High-level image recognition is one of the most challenging domains in the field of computer vision. Several works have been done trying to close this semantic gap. Developing robust and geometrically invariant feature representation is critical to the performance of a successful learning system. Recently, neural networks have grown to be one of the best-performing methods in visual recognition field. In this project, we plan to combine the output features of a trained Convolutional Neural Network (CNN) and spatial pyramid matching scheme to create a novel feature representation and use it to recognize the semantic categories of images.
 
-
 % related work: briefly describe related papers
 \section{Previous Work}
 Talk about three works: Object Bank, Spatial Pyramid, ImageNet CNN.
@@ -31,37 +30,53 @@ Talk about three works: Object Bank, Spatial Pyramid, ImageNet CNN.
 % technical approach: describe the feature representation(s) and algorithm(s)
 \section{Approach}
 \par
-	A. Krizhevsky et al.\cite{CNN} trained a large, deep convolutional neural network used for classifying high-resolution images in ImageNet contest
+	A. Krizhevsky et al.\cite{CNN} trained a large, deep convolutional neural
+	network used for classifying high-resolution images in ImageNet contest
 	and obtained impressive results for highly challenging object recognition
-	tasks using	supervised learning. The features using this technique can also
-	be used	for scene categories.
+	tasks using	supervised learning. The features used in this technique can
+	be a good candidate for natural scene categories.
 
 \par
-	Selective search\cite{SS} can be used for generating possible object
-	locations for object recognition or scene classification. This helps us
-	reduce the processing time significantly without lose overall performance.
+	Selective search\cite{SS} is an algorithm that aims to capture all possible
+	object locations by enabling the use of the powerful Bag-of-Words model
+	for recognition. This algorithm can help us significantly reduce the total
+	processing time without lose much overall performance.
 
 \par
-	Constructing three-level pyramid allows us to precisely matching of two
+	After we obtain the possible object locations using selective search,
+	constructing of three-level pyramid allows us to precisely matching of two
 	collections of features in a high-dimensional appearance space despite
 	of the spatial information.\cite{SPM}
 
 \par
-	The scene classification will be done with a linear support vector machine
-	(SVM).\cite{SVM}
+	As for the classification, the first thing we planning to attempt is a
+	linear support vector machine (SVM).\cite{SVM} There is some useful
+	open source SVM libraries that are publicly available to use.
 
 % experiments: Describe the experiments to evaluate your approach
 \section{Experiments}
-
+TODO
 
 % others: describe software, libraries, language that you will use
 % and how you plan to share the work with your partner.
 \section{Matirials}
 	\subsection{Dataset}
-	MIT indoor 67 dataset\cite{DATA}
-
+	\begin{itemize}
+	\item{IndoorCVPR\_09} is a challenging dataset which contains 67
+	indoor categories and a total of 15,620 images. To address these indoor
+	scenes recognition, we need a model	that can exploit local and global
+	discriminative information.\cite{DATA}
+	\end{itemize}
 	\subsection{Tools}
-	Caffe\cite{CAFFE}, Selective Search Software\cite{SS}, LibSVM\cite{SVM}
+	\begin{itemize}
+	\item{Caffe} is a high-performance deep learning framework with GPU
+	acceleration. \cite{CAFFE}
+
+	\item{Selective Search Software} code is publicly available to use
+	for capture possible locations for object recognition. \cite{SS}
+
+	\item{LibSVM} is a library for SVM classification. \cite{SVM}
+	\end{itemize}
 
 % references:
 \begin{thebibliography}{10}
@@ -85,13 +100,14 @@ CVPR 2006.
 \& Semantic Feature Sparsification",
 NIPS 2010.
 
+\bibitem{DATA} A. Quattoni, and A.Torralba. Recognizing Indoor Scenes.
+\emph{IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+2009.
+
 \bibitem{SVM} LibSVM: http://www.csie.ntu.edu.tw/~cjlin/libsvm/
 
 \bibitem{CAFFE} Caffe: http://caffe.berkeleyvision.org/
 
-\bibitem{DATA} A. Quattoni, and A.Torralba. Recognizing Indoor Scenes.
-\emph{IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
-2009.
 
 \end{thebibliography}
 \end{document}
