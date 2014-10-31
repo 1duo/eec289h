@@ -1,4 +1,4 @@
-\documentclass[letterpaper,twocolumn,11pt]{article}
+\documentclass[letterpaper,twocolumn,10pt]{article}
 
 \usepackage[latin1]{inputenc}
 \usepackage[english]{babel}
@@ -54,42 +54,43 @@ quality locations.
 
 % technical approach: describe the feature representation(s) and algorithm(s)
 \section{Approach}
-TODO: Details
 \par
-	A. Krizhevsky et al.\cite{CNN} trained a large, deep convolutional neural
-	network used for classifying high-resolution images in ImageNet contest
-	and obtained impressive results for highly challenging object recognition
-	tasks using	supervised learning. The features used in this technique can
-	be a good candidate for natural scene categories.
-    1 Use ImageNet CNN to compute feature (any layer's output).
+    For feature representation, we plan to use pre-trained ImageNet CNN and
+    extract the last couple of hidden-layers, which contain either 4096 or
+    1000 neurons. The 4096 or 1000 vector would serve as our feature
+    descriptor.
 
 \par
-	Selective search\cite{SS} is an algorithm that aims to capture all possible
-	object locations by enabling the use of the powerful Bag-of-Words model
-	for recognition. This algorithm can help us significantly reduce the total
-	processing time without lose much overall performance.
-    2 Multi-scale candidate window select using selective search.
+    For multi-scale candidate windows generating, we plan to use selective
+    search method, the number of candidate windows chosen for each image can be
+    a tunable parameter.
 
 \par
-	After we obtain the possible object locations using selective search,
-	constructing of three-level pyramid allows us to precisely matching of two
-	collections of features in a high-dimensional appearance space despite
-	of the spatial information.\cite{SPM}
-    3 Build a response map using a three-layer spatial pyramid as in Object Bank.
+    After we obtain the candidate windows per image and get the feature
+    descriptor vector for each window. We build a response map using
+    a multi-layer spatial pyramid as in Object Bank to combine each feature's
+    information and creating a final high-level image representation.
 
 \par
-	As for the classification, the first thing we planning to attempt is a
-	linear support vector machine (SVM).\cite{SVM} There is some useful
-	open source SVM libraries that are publicly available to use.
-    4 Use a linear SVM to train the model.
+    As for the classification, the first thing we planning to attempt is
+    a linear support vector machine (SVM). There are some useful open source
+    SVM libraries that are publicly available.  If possible, we also want to
+    explore using a multi-class one-vs-all SVM as our learning model.
 
 % experiments: Describe the experiments to evaluate your approach
 \section{Experiments}
-TODO
+We intend to test the correctness of each component of the system first.
+For tuning the system, we intend to do the following experiments:
+\begin{itemize}
+\item Use different layer's output of the CNN as our feature descriptor.
+\item Test the number of candidate windows from each image to find the optimal one.
+\item Test different spatial pyramid scheme (different layers, different ways to divide windows, and different pooling functions).
+\item Test different SVMs.
+\end{itemize}
 
 % others: describe software, libraries, language that you will use
 % and how you plan to share the work with your partner.
-\section{Matirials}
+\section{Materials}
 	\subsection{Dataset}
 	\begin{itemize}
 	\item{IndoorCVPR\_09} is a challenging dataset which contains 67
