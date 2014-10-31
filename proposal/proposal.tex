@@ -21,37 +21,67 @@
 
 % overview: describe the problem and main idea
 \section{Problem}
-High-level image recognition is one of the most challenging domains in the field of computer vision. Several works have been done trying to close this semantic gap. Developing robust and geometrically invariant feature representation is critical to the performance of a successful learning system. Recently, neural networks have grown to be one of the best-performing methods in visual recognition field. In this project, we plan to combine the output features of a trained Convolutional Neural Network (CNN) and spatial pyramid matching scheme to create a novel feature representation and use it to recognize the semantic categories of images.
+High-level image recognition is one of the most challenging domains in the
+field of computer vision. Several works have been done trying to close this
+semantic gap. Developing robust and geometrically invariant feature
+representation is critical to the performance of a successful learning system.
+Recently, neural networks have grown to be one of the best-performing methods
+in visual recognition field. In this project, we plan to combine the output
+features of a trained Convolutional Neural Network (CNN) and spatial pyramid
+matching scheme to create a novel feature representation and use it to
+recognize the semantic categories of images.
 
 % related work: briefly describe related papers
-\section{Previous Work}
-Talk about three works: Object Bank, Spatial Pyramid, ImageNet CNN.
+\section{Related Works}
+Talk about three works: Object Bank, Spatial Pyramid, ImageNet CNN.  Object
+bank\cite{OB} is among the first to propose a high-level image representation.
+It uses a large number of pre-trained generic object detectors to create
+response map, which limited the performance of their system to the performance
+of object detectors they choose. Spatial pyramid representation\cite{SPM} is
+a popular method used for scene categorization tasks. It is a simple and
+computationally efficient extension of an orderless bag-of-features image
+representation. However, without a proper high-level feature representation,
+such schemes often fail to offer sufficient semantic information of a scene.
+Convolutional neural networks (CNN) with flexible capacity makes training from
+large-scale dataset possible. A. Krizhevsky et al.\cite{CNN} trained one of the
+largest CNN on the subsets of ImageNet and achieved best results in 2012. While
+their CNN system focuses on object detection, the features generated can be
+used for other applications such as scene classification. Several algorithms
+try to address the problem of generating possible object locations in an image.
+Selective search method combines the strength of both an exhaustive search and
+segmentation and results in a small set of data-driven, class-independent, high
+quality locations.
 
 % technical approach: describe the feature representation(s) and algorithm(s)
 \section{Approach}
+TODO: Details
 \par
 	A. Krizhevsky et al.\cite{CNN} trained a large, deep convolutional neural
 	network used for classifying high-resolution images in ImageNet contest
 	and obtained impressive results for highly challenging object recognition
 	tasks using	supervised learning. The features used in this technique can
 	be a good candidate for natural scene categories.
+    1 Use ImageNet CNN to compute feature (any layer's output).
 
 \par
 	Selective search\cite{SS} is an algorithm that aims to capture all possible
 	object locations by enabling the use of the powerful Bag-of-Words model
 	for recognition. This algorithm can help us significantly reduce the total
 	processing time without lose much overall performance.
+    2 Multi-scale candidate window select using selective search.
 
 \par
 	After we obtain the possible object locations using selective search,
 	constructing of three-level pyramid allows us to precisely matching of two
 	collections of features in a high-dimensional appearance space despite
 	of the spatial information.\cite{SPM}
+    3 Build a response map using a three-layer spatial pyramid as in Object Bank.
 
 \par
 	As for the classification, the first thing we planning to attempt is a
 	linear support vector machine (SVM).\cite{SVM} There is some useful
 	open source SVM libraries that are publicly available to use.
+    4 Use a linear SVM to train the model.
 
 % experiments: Describe the experiments to evaluate your approach
 \section{Experiments}
