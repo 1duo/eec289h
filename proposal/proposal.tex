@@ -9,12 +9,12 @@
 \usepackage{url}
 \usepackage{multicol}
 
-% title: - TBD
+% title
 \title{Scene Classification with Deep Convolutional Neural Networks}
 %{Scene Classification with Deep Convolutional Neural Networks}
 %{Deep Convolutional Neural Networks for Recognizing Natural Scene Categories}
-\author{Yangzihao Wang, Yuduo Wu}
-\date{} % Activate to display a given date or no date
+\author{Yangzihao Wang and Yuduo Wu}
+%\date{} % Activate to display a given date or no date
 
 \begin{document}
 \maketitle
@@ -33,7 +33,8 @@ recognize the semantic categories of images.
 
 % related work: briefly describe related papers
 \section{Related Works}
-Talk about three works: Object Bank, Spatial Pyramid, ImageNet CNN.  Object
+%Talk about three works: Object Bank, Spatial Pyramid, ImageNet CNN.
+Object
 bank\cite{OB} is among the first to propose a high-level image representation.
 It uses a large number of pre-trained generic object detectors to create
 response map, which limited the performance of their system to the performance
@@ -81,64 +82,68 @@ quality locations.
 \section{Experiments}
 We intend to test the correctness of each component of the system first.
 For tuning the system, we intend to do the following experiments:
-\begin{itemize}
-\item Use different layer's output of the CNN as our feature descriptor.
-\item Test the number of candidate windows from each image to find the optimal one.
-\item Test different spatial pyramid scheme (different layers, different ways to divide windows, and different pooling functions).
-\item Test different SVMs.
-\end{itemize}
+%\begin{itemize}
+%\item
+1) Use different layer's output of the CNN as our feature descriptor.
+%\item
+2) Test the number of candidate windows from each image to find the optimal one.
+%\item
+3) Test different spatial pyramid scheme (different layers, different ways to
+divide windows, and different pooling functions).
+%\item
+4) Test different SVMs.
+%\end{itemize}
 
 % others: describe software, libraries, language that you will use
 % and how you plan to share the work with your partner.
 \section{Materials}
-	\subsection{Dataset}
 	\begin{itemize}
-	\item{IndoorCVPR\_09} is a challenging dataset which contains 67
-	indoor categories and a total of 15,620 images. To address these indoor
-	scenes recognition, we need a model	that can exploit local and global
-	discriminative information.\cite{DATA}
-	\end{itemize}
-	\subsection{Tools}
-	\begin{itemize}
-	\item{Caffe} is a high-performance deep learning framework with GPU
-	acceleration. \cite{CAFFE}
+	\item{Dataset:}
+	IndoorCVPR\_09\cite{DATA} is a challenging dataset contains 67
+	indoor categories and 15,620 images.
 
-	\item{Selective Search Software} code is publicly available to use
-	for capture possible locations for object recognition. \cite{SS}
+	\item{Tools:}
+	1) Caffe\cite{CAFFE} is a high-performance deep learning framework
+	with GPU acceleration.
+	2) Selective Search Software\cite{SS} code is publicly available to use
+	for capture possible locations for object recognition.
+	3) LibSVM\cite{SVM} is a library for SVM classification.
 
-	\item{LibSVM} is a library for SVM classification. \cite{SVM}
+	\item{Plan:}
+	Yangzihao will main focus on building Multi-layer spatial pyramid and
+	selecting/training SVM. While Yuduo will response for selecting windows and
+	extracting features using pre-trained CNN.
 	\end{itemize}
 
 % references:
 \begin{thebibliography}{10}
-
-\bibitem{CNN} A. Krizhevsky, I. Sutskever, and G. Hinton.,
-"ImageNet Classification with Deep Convolutional Neural Networks",
-NIPS 2012.
-
-\bibitem{SS} J. R. R. Uijlings, K. E. A. van de Sande,
-T. Gevers, A. W. M. Smelters
-"Selective Search for Object Recognition",
-\emph{In International Journal of Computer Vision}, 2013.
-
-\bibitem{SPM} S. Lazebnik, C. Schmid, and J. Ponce.,
-"Beyond Bags of Features:
-Spatial Pyramid Matching for Recognizing Natural Scene Categories",
-CVPR 2006.
 
 \bibitem{OB} L-J. Li, H. Su, E. Xing, and L. Fei-Fei.,
 "Object Bank: A High-Level Image Representation for Scene Classification
 \& Semantic Feature Sparsification",
 NIPS 2010.
 
+\bibitem{SPM} S. Lazebnik, C. Schmid, and J. Ponce.,
+"Beyond Bags of Features:
+Spatial Pyramid Matching for Recognizing Natural Scene Categories",
+CVPR 2006.
+
+\bibitem{CNN} A. Krizhevsky, I. Sutskever, and G. Hinton.,
+"ImageNet Classification with Deep Convolutional Neural Networks",
+NIPS 2012.
+
 \bibitem{DATA} A. Quattoni, and A.Torralba. Recognizing Indoor Scenes.
 \emph{IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
 2009.
 
-\bibitem{SVM} LibSVM: http://www.csie.ntu.edu.tw/~cjlin/libsvm/
-
 \bibitem{CAFFE} Caffe: http://caffe.berkeleyvision.org/
 
+\bibitem{SS} J. R. R. Uijlings, K. E. A. van de Sande,
+T. Gevers, A. W. M. Smelters
+"Selective Search for Object Recognition",
+\emph{In International Journal of Computer Vision}, 2013.
+
+\bibitem{SVM} LibSVM: http://www.csie.ntu.edu.tw/~cjlin/libsvm/
 
 \end{thebibliography}
 \end{document}
