@@ -1,0 +1,172 @@
+\documentclass[letterpaper,twocolumn,10pt]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage[english]{babel}
+\usepackage{scs}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{amssymb,amsmath}
+\usepackage{url}
+\usepackage{multicol}
+
+% title
+\title{Scene Classification with Deep Convolutional Neural Networks}
+%{Scene Classification with Deep Convolutional Neural Networks}
+%{Deep Convolutional Neural Networks for Recognizing Natural Scene Categories}
+\author{Yangzihao Wang and Yuduo Wu}
+%\date{} % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This report presents a method for recognizing scene categories based on
+
+\end{abstract}
+
+% overview: describe the problem and main idea
+\section{Introduction}
+High-level image recognition is one of the most challenging domains in the
+field of computer vision. Several works have been done trying to close this
+semantic gap. Developing robust and geometrically invariant feature
+representation is critical to the performance of a successful learning system.
+Recently, neural networks have grown to be one of the best-performing methods
+in visual recognition field. In this project, we plan to combine the output
+features of a trained Convolutional Neural Network (CNN) and spatial pyramid
+matching scheme to create a novel feature representation and use it to
+recognize the semantic categories of images.
+
+% related work: briefly describe related papers
+\section{Previous Work}
+%Talk about three works: Object Bank, Spatial Pyramid, ImageNet CNN.
+Object
+bank\cite{OB} is among the first to propose a high-level image representation.
+It uses a large number of pre-trained generic object detectors to create
+response map, which limited the performance of their system to the performance
+of object detectors they choose. Spatial pyramid representation\cite{SPM} is
+a popular method used for scene categorization tasks. It is a simple and
+computationally efficient extension of an orderless bag-of-features image
+representation. However, without a proper high-level feature representation,
+such schemes often fail to offer sufficient semantic information of a scene.
+Convolutional neural networks (CNN) with flexible capacity makes training from
+large-scale dataset possible. A. Krizhevsky et al.\cite{CNN} trained one of the
+largest CNN on the subsets of ImageNet and achieved best results in 2012. While
+their CNN system focuses on object detection, the features generated can be
+used for other applications such as scene classification. Several algorithms
+try to address the problem of generating possible object locations in an image.
+Selective search method combines the strength of both an exhaustive search and
+segmentation and results in a small set of data-driven, class-independent, high
+quality locations.
+
+\section{Spatial Pyramid Matching}
+
+\section{Selective Search}
+
+\section{Feature Extraction}
+
+\section{Qualitative Evaluations}
+
+\subsection{Scene Category Recognition}
+
+\subsection{MIT-indoor67}
+
+\section{Discussion}
+
+\iffalse
+
+% technical approach: describe the feature representation(s) and algorithm(s)
+\section{Approach}
+\par
+    For feature representation, we plan to use pre-trained ImageNet CNN and
+    extract the last couple of hidden-layers, which contain either 4096 or
+    1000 neurons. The 4096 or 1000 vector would serve as our feature
+    descriptor.
+
+\par
+    For multi-scale candidate windows generating, we plan to use selective
+    search method, the number of candidate windows chosen for each image can be
+    a tunable parameter.
+
+\par
+    After we obtain the candidate windows per image and get the feature
+    descriptor vector for each window. We build a response map using
+    a multi-layer spatial pyramid as in Object Bank to combine each feature's
+    information and creating a final high-level image representation.
+
+\par
+    As for the classification, the first thing we planning to attempt is
+    a linear support vector machine (SVM). There are some useful open source
+    SVM libraries that are publicly available.  If possible, we also want to
+    explore using a multi-class one-vs-all SVM as our learning model.
+
+% experiments: Describe the experiments to evaluate your approach
+\section{Experiments}
+We intend to test the correctness of each component of the system first.
+For tuning the system, we intend to do the following experiments:
+%\begin{itemize}
+%\item
+1) Use different layer's output of the CNN as our feature descriptor.
+%\item
+2) Test the number of candidate windows from each image to find the optimal one.
+%\item
+3) Test different spatial pyramid scheme (different layers, different ways to
+divide windows, and different pooling functions).
+%\item
+4) Test different SVMs.
+%\end{itemize}
+
+% others: describe software, libraries, language that you will use
+% and how you plan to share the work with your partner.
+\section{Materials}
+	\begin{itemize}
+	\item{Dataset:}
+	IndoorCVPR\_09\cite{DATA} is a challenging dataset contains 67
+	indoor categories and 15,620 images.
+
+	\item{Tools:}
+	1) Caffe\cite{CAFFE} is a high-performance deep learning framework
+	with GPU acceleration.
+	2) Selective Search Software\cite{SS} code is publicly available to use
+	for capture possible locations for object recognition.
+	3) LibSVM\cite{SVM} is a library for SVM classification.
+
+	\item{Plan:}
+	Yangzihao will main focus on building Multi-layer spatial pyramid and
+	selecting/training SVM. While Yuduo will response for selecting windows and
+	extracting features using pre-trained CNN.
+	\end{itemize}
+
+\fi
+
+% references:
+\begin{thebibliography}{10}
+
+\bibitem{OB} L-J. Li, H. Su, E. Xing, and L. Fei-Fei.,
+"Object Bank: A High-Level Image Representation for Scene Classification
+\& Semantic Feature Sparsification",
+NIPS 2010.
+
+\bibitem{SPM} S. Lazebnik, C. Schmid, and J. Ponce.,
+"Beyond Bags of Features:
+Spatial Pyramid Matching for Recognizing Natural Scene Categories",
+CVPR 2006.
+
+\bibitem{CNN} A. Krizhevsky, I. Sutskever, and G. Hinton.,
+"ImageNet Classification with Deep Convolutional Neural Networks",
+NIPS 2012.
+
+\bibitem{DATA} A. Quattoni, and A.Torralba. Recognizing Indoor Scenes.
+\emph{IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+2009.
+
+\bibitem{CAFFE} Caffe: http://caffe.berkeleyvision.org/
+
+\bibitem{SS} J. R. R. Uijlings, K. E. A. van de Sande,
+T. Gevers, A. W. M. Smelters
+"Selective Search for Object Recognition",
+\emph{In International Journal of Computer Vision}, 2013.
+
+\bibitem{SVM} LibSVM: http://www.csie.ntu.edu.tw/~cjlin/libsvm/
+
+\end{thebibliography}
+\end{document}
