@@ -45,20 +45,24 @@ University of California, Davis\\
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-summarize the problem, main idea, and results;
+%summarize the problem, main idea, and results;
+The use of massive datasets like ImageNet and the revival of Convolutional
+Neural Networks (CNNs) for learning deep features has significantly improved
+the performance of object recognition. However, performance at scene
+classification has not achieved the same level of success since there is still
+semantic gap between the deep features and the high-level context.  In this
+project we proposed a novel scene classification method which combines CNN and
+Spatial Pyramid to generate high-level context-aware features for one-vs-all
+linear SVMs. Our method achieves the state-of-the-art result: 68.04\% accuracy
+rate on MIT indoor67 dataset using only the deep features trained from
+ImageNet. 
+ 
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
-\section{Introduction}
-
-%-------------------------------------------------------------------------
-\subsection{Related Work}
-
-provide a detailed description of related papers (not necessarily limited to
-those in the schedule).  If you're proposing a new idea or extending an existing
-approach, compare and contrast it with existing work.  If you're analyzing one
-or two related techniques, describe how they relate to other relevant work;
-~\cite{Li:2010:OBA, Lazebnik:2006:BBF, Zhou:2014:LDF, Krizhevsky:2012:ICD, Quattoni:2009:RIS, Uijlings:2013:SSO}
+\section{Related Work}
+\label{sec:related}
+\input{tex/related}
 
 \subsection{Technical Approach}
 
