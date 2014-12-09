@@ -1,0 +1,21 @@
+%Describe in detail the feature representation(s) and algorithm(s) you employed.
+%The description should be self-contained (i.e., the reader should not have to
+%rely on outside sources for your points to be clear), and should provide enough
+%detail so that the reader could re-implement the approach.  Clearly state the
+%method's input and output, and any assumptions or design choices;
+
+\subsection{Selective Search}
+Selective search is widely used for generating possible object locations for
+use in object recognition\cite{Uijlings:2013:SSO}. Same strategies can be
+adopted on indoor scene classification. For the indoor scenes that can be well
+characterized by objects they contain, the selective search can exploit local
+discriminative information with greatly reduced number of locations compared
+to an exhaustive search.
+
+\subsection{Feature Extraction}
+
+\subsubsection{Max Pooling}
+
+\subsection{Spatial Pyramid Matching}
+For each image, a three-level spatial pyramid representation is used, resulting
+$number images * number windows * (1 + 4 + 16)$ length feature vectors.

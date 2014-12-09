@@ -53,10 +53,10 @@ classification has not achieved the same level of success since there is still
 semantic gap between the deep features and the high-level context.  In this
 project we proposed a novel scene classification method which combines CNN and
 Spatial Pyramid to generate high-level context-aware features for one-vs-all
-linear SVMs. Our method achieves the state-of-the-art result: 68.04\% accuracy
-rate on MIT indoor67 dataset using only the deep features trained from
-ImageNet. 
- 
+linear SVMs. Our method achieves the state-of-the-art result: 68.04\% average
+accuracy rate on MIT indoor67 dataset using only the deep features trained from
+ImageNet.
+
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
@@ -64,23 +64,17 @@ ImageNet.
 \label{sec:related}
 \input{tex/related}
 
-\subsection{Technical Approach}
+%%%%%%%%% BODY TEXT
+\section{Technical Approach}
+\label{sec:method}
+\input{tex/method}
 
-Describe in detail the feature representation(s) and algorithm(s) you employed.
-The description should be self-contained (i.e., the reader should not have to
-rely on outside sources for your points to be clear), and should provide enough
-detail so that the reader could re-implement the approach.  Clearly state the
-method's input and output, and any assumptions or design choices;
-
-\subsection{Experiments}
-
-Describe the experiments you conducted to evaluate the approach.  For each
-experiment, describe what you did, what was the main purpose of the experiment,
-and what you learned from the results. Provide figures, tables, and qualitative
-examples, as appropriate.
+\section{Experiments}
+\label{sec:results}
+\input{tex/results}
 
 %-------------------------------------------------------------------------
-\subsection{Conclusions}
+\section{Conclusions}
 
 briefly summarize the main idea and results, and possible future work.
 

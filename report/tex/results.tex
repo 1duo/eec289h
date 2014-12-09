@@ -1,0 +1,32 @@
+%Describe the experiments you conducted to evaluate the approach.  For each
+%experiment, describe what you did, what was the main purpose of the experiment,
+%and what you learned from the results. Provide figures, tables, and qualitative
+%examples, as appropriate.
+
+In this section, we evaluate our method on the scene dataset: MIT-indoor67~\cite{Quattoni:2009:RIS}
+which include 15,620 images over 67 indoor scenes. Suggested training and test
+list of images are used to do the training (80 images per class) and validation
+(20 images per class).
+Multi-class classification is done with a support vector machine (SVM) trained
+using one-versus-all rule, that is, each classifier is learned to separate each
+class from the rest of classes. Test image is assigned the label of the
+classifier with the highest response.Scene classification performance is
+evaluated by average multi-class classification accuracy over all scene classes.
+
+% Table 1
+\begin{table}[ht]
+	\caption{Comparison results on MIT-indoor67}
+	\centering
+	\begin{tabular}{l c}
+	\hline \hline
+	Models 			 & Average Precision \\ \hline
+	Our Method  	 & {\bf{68.05\%}} \\
+	Only CNN Feature & 59.95\%	\\
+	\hline
+	\end{tabular}
+	\label{tab:overall}
+\end{table}
+
+We compare our scene classification tasks with the performance using only the
+features extracted from CNN, the results are summarized in Table~\ref{tab:overall}.
+
