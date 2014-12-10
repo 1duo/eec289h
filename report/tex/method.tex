@@ -7,15 +7,16 @@
 Our system takes an image as input, extract around 2000 bottom-up region
 proposals using selective search\cite{Uijlings:2013:SSO}, then extract
 4096-dimensional feature vectors for each region proposal using a large
-convolutional neural network (CNN) library Caffe\cite{},
+convolutional neural network (CNN) library Caffe\cite{Jia:2014:Caffe},
 after we got feature for each region proposal, we apply spatial pyramid and
-do max-pooling to find the features that contribute most. The final feature vector
+do max-pooling to find the features that contribute most. We then perform a
+L2 normalization procedure for all feature matrices. The final feature matrices
 then used for classification using multi-class linear SVMs classifier. Our
-method achieves a mean average precision (AP) of 68.05\% on dataset
-MIT-indoor67\cite{Quattoni:2009:RIS}. For comparison, we implement using
-only 4096-dimensional feature vectors extracted from Caffe without selective
-search, spatial pyramid matching and max-pooling which report the AP of
-59.95\%.
+method achieves a mean average precision (mAP) of 68.2953\% on dataset
+MIT-indoor67\cite{Quattoni:2009:RIS} without fine-tune on this dataset.
+For comparison, we implement using only 4096-dimensional feature vectors
+extracted from Caffe without region proposals, spatial pyramid matching 
+and max-pooling which has the mAP of 59.9507\%.
 
 \subsection{Selective Search}
 A variety of recent research offers methods for generating category-independent
@@ -26,21 +27,50 @@ adopted on indoor scene classification. For the indoor scenes that can be well
 characterized by objects they contain, the selective search can exploit local
 discriminative information with greatly reduced number of locations compared
 to an exhaustive search. We use selective search to generate region proposals.
+Caffe provides a general Python interface for models and it has built in
+interface for selective search. We only need to change the setting of CROP\_MODES
+to selective\_search, we can operate on around 2000 region proposals instead of
+the entire image.
 
 \subsection{Feature Extraction}
-Caffe\cite{} is an open source convolutional architecture for
-fast feature embedding which contains pre-trained ImageNet features.
-In our project, we use pre-trained ImageNet model to classify images
+Caffe\cite{Jia:2014:Caffe} is an open source convolutional architecture for
+fast feature embedding which contains pre-trained models.
+In our project, we use pre-trained BVLC Reference CaffeNet to classify images
 and extract 4096-dimensional layer 7 feature vectors from each region
-proposal using Caffe\cite{} implementation of the CNN described by
-Krizhevsky et al\cite{Krizhevsky:2012:ICD}.
+proposal using Caffe\cite{Jia:2014:Caffe} implementation of the CNN described by
+Krizhevsky et al\cite{Krizhevsky:2012:ICD}. It provides an option to output the
+features in certain layer rather than only the final classification results. We
+set the \textit{blobs} option to \textit{fc7} in order to obtained the Layer
+7 feature vectors for each of the region proposals. Therefore, after this step,
+for one input image, we obtain around 2000 feature vectors and each have the
+dimension of 4096.
 
-\subsubsection{Max Pooling}
+\subsection{Max Pooling}
 
 \subsection{Spatial Pyramid Matching}
 For each image, a three-level spatial pyramid representation is used, resulting
-$number images * number windows * (1 + 4 + 16)$ length feature vectors.
+$numImages * numWindows * (1 + 4 + 16)$ length feature vectors.
+
+\subsection{L2 Normalization}
+We then perform the L2 normalizations for each of the feature matrix.
+L2 normalization is computed by the square root of the sum of each feature's
+square and for each feature in the feature vector. By dividing each feature
+vector the L2 normalization value, we have each feature vector's
+L2 normalization = 1. This L2 normalizations have only a modest effect on the
+overall performance perhaps simply because the original feature vector data
+already in the similar scale.
 
 \subsection{Training}
 SVMs (Support Vector Machines) are a useful technique for data classification.
-
+LibSVM\cite{Chang:2011:CC01a} is an integrated software for support vector
+classification that is widely used in variety of classification tasks.
+It supports multi-class classification which is used in this project.
+We trained 67 binary one-vs-all SVM classifiers each for one category in
+MIT-indoor67 dataset.
+In order to fit the required LibSVM training file format, for each category
+training file, we add label +1 to each feature vector that belongs to the
+category and label -1 to all feature vectors that belong to rest of categories.
+We also move all instances that belonging to the current positive category
+(+1 labeled feature vectors) to be at the top of the feature matrix, this would
+guarantee the correctness even if LibSVM might internally map the label of the
+first training instance to be +1 regardless of its actual label value.
