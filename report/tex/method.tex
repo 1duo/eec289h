@@ -4,7 +4,23 @@
 %detail so that the reader could re-implement the approach. Clearly state the
 %method's input and output, and any assumptions or design choices;
 
-Our system takes an image as input, extract around 2000 bottom-up region
+Previous work on Convolutional Neural Networks (CNNs) implies that it may capture the high-level representation of an image
+using a certain deep layer feature set. Our goal of this project is to answer one single question: \emph{Whether CNNs can help with the feature representation
+to extract high-level inforamtion of an image scene and thus improve the scene classification precision?} 
+We choose a CNN which is pre-trained on ImageNet dataset (ImageNet-CNN) since its a large-scale general object recognition datasets which consists of over 15 million labeled
+high-resolution images in over 22,000 categories. We use CNN pretrained on such dataset with the hope to reduce the chance of overfitting to certain scenes.
+To utilize a pre-trained ImageNet CNN and for the efficiency of the feature extraction process, we use a popular library: Caffe~\cite{Jia:2014:CCA}.
+
+For the training process, our system takes all images in the training set for each category as the input, use the ImageNet-CNN to perform a prediction for each image. Instead of
+getting the final 1000 length prediction vector, we extract the FC 7 layer feature set which contains 4096 response values. We then use such features to train one linear SVM model
+for each scene category. For the testing process, an input image goes through the same ImageNet-CNN and its 4096 length deep feature vector are used to predict its scene classification
+for each linear SVM model and we assign the one with highest confidence score.
+
+%I think one good way to write a paper is to leave the climax to the very last part. Or keep it coming little by little. You give it away too soon here. It's like making love and finishing in
+%3 minutes and now all the girl wants to do is getting rid of you and taking some fresh air to cool her foolish mind. Anyway, I suggest we go slow, we list our improvements one by one.
+%I will do it tomorrow morning. Lemme show you how to make a girl come!
+
+extract around 2000 bottom-up region
 proposals using selective search\cite{Uijlings:2013:SSO}, then extract
 4096-dimensional feature vectors for each region proposal using a large
 convolutional neural network (CNN) library Caffe\cite{Jia:2014:Caffe},
@@ -17,6 +33,14 @@ MIT-indoor67\cite{Quattoni:2009:RIS} without fine-tune on this dataset.
 For comparison, we implement using only 4096-dimensional feature vectors
 extracted from Caffe without region proposals, spatial pyramid matching 
 and max-pooling which has the mAP of 59.9507\%.
+
+\begin{figure*}[ht]
+  \centering
+  \includegraphics[scale=0.8]{img/demo.pdf}
+  \centering
+  \caption{The overview of our system. For an input image, a selective search algorithm is applied first to get roughly 2000 regions of interest. We then apply a pre-trained Convolutional Neural Network (CNN) on each region of interest to get a deep feature vector of length 4096. A three-level spatial pyramid representation of the image with deep feature is used to create the final feature representation. At each level, for each spatial bin, we use max pooling to get the largest feature value of all the feature values of the regions of interest which fall into that spatial bin, resulting in the final feature of length No.Deep Features $\times$ (1+4+16) as a high-level representation of the input image. Then multiple one-vs-all linear SVMs are used to do the scene classification.}
+  \label{fig:system_overview}
+\end{figure*}
 
 \subsection{Selective Search}
 A variety of recent research offers methods for generating category-independent
@@ -33,11 +57,11 @@ to selective\_search, we can operate on around 2000 region proposals instead of
 the entire image.
 
 \subsection{Feature Extraction}
-Caffe\cite{Jia:2014:Caffe} is an open source convolutional architecture for
+Caffe~\cite{Jia:2014:CCA} is an open source convolutional architecture for
 fast feature embedding which contains pre-trained models.
 In our project, we use pre-trained BVLC Reference CaffeNet to classify images
 and extract 4096-dimensional layer 7 feature vectors from each region
-proposal using Caffe\cite{Jia:2014:Caffe} implementation of the CNN described by
+proposal using Caffe~\cite{Jia:2014:CCA} implementation of the CNN described by
 Krizhevsky et al\cite{Krizhevsky:2012:ICD}. It provides an option to output the
 features in certain layer rather than only the final classification results. We
 set the \textit{blobs} option to \textit{fc7} in order to obtained the Layer
