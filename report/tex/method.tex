@@ -1,21 +1,46 @@
 %Describe in detail the feature representation(s) and algorithm(s) you employed.
 %The description should be self-contained (i.e., the reader should not have to
 %rely on outside sources for your points to be clear), and should provide enough
-%detail so that the reader could re-implement the approach.  Clearly state the
+%detail so that the reader could re-implement the approach. Clearly state the
 %method's input and output, and any assumptions or design choices;
 
+Our system takes an image as input, extract around 2000 bottom-up region
+proposals using selective search\cite{Uijlings:2013:SSO}, then extract
+4096-dimensional feature vectors for each region proposal using a large
+convolutional neural network (CNN) library Caffe\cite{},
+after we got feature for each region proposal, we apply spatial pyramid and
+do max-pooling to find the features that contribute most. The final feature vector
+then used for classification using multi-class linear SVMs classifier. Our
+method achieves a mean average precision (AP) of 68.05\% on dataset
+MIT-indoor67\cite{Quattoni:2009:RIS}. For comparison, we implement using
+only 4096-dimensional feature vectors extracted from Caffe without selective
+search, spatial pyramid matching and max-pooling which report the AP of
+59.95\%.
+
 \subsection{Selective Search}
+A variety of recent research offers methods for generating category-independent
+region proposals for possible object locations.
 Selective search is widely used for generating possible object locations for
 use in object recognition\cite{Uijlings:2013:SSO}. Same strategies can be
 adopted on indoor scene classification. For the indoor scenes that can be well
 characterized by objects they contain, the selective search can exploit local
 discriminative information with greatly reduced number of locations compared
-to an exhaustive search.
+to an exhaustive search. We use selective search to generate region proposals.
 
 \subsection{Feature Extraction}
+Caffe\cite{} is an open source convolutional architecture for
+fast feature embedding which contains pre-trained ImageNet features.
+In our project, we use pre-trained ImageNet model to classify images
+and extract 4096-dimensional layer 7 feature vectors from each region
+proposal using Caffe\cite{} implementation of the CNN described by
+Krizhevsky et al\cite{Krizhevsky:2012:ICD}.
 
 \subsubsection{Max Pooling}
 
 \subsection{Spatial Pyramid Matching}
 For each image, a three-level spatial pyramid representation is used, resulting
 $number images * number windows * (1 + 4 + 16)$ length feature vectors.
+
+\subsection{Training}
+SVMs (Support Vector Machines) are a useful technique for data classification.
+
