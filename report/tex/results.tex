@@ -22,6 +22,13 @@ one feature vectors for each entire image, instead of perform spatial pyramid
 and L2 normalization, we simply add labels and send them into the multi-class
 SVMs. Validation image feature vectors are also generated in the same way.
 
+Our
+method achieves a mean average precision (mAP) of 68.2953\% on dataset
+MIT-indoor67\cite{Quattoni:2009:RIS} without fine-tune on this dataset.
+For comparison, we implement using only 4096-dimensional feature vectors
+extracted from Caffe without region proposals, spatial pyramid matching 
+and max-pooling which has the mAP of 59.9507\%.
+
 % Table 1
 \begin{table}[ht]
 	\caption{Comparison results on MIT-indoor67}

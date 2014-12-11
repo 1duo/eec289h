@@ -16,23 +16,8 @@ getting the final 1000 length prediction vector, we extract the FC 7 layer featu
 for each scene category. For the testing process, an input image goes through the same ImageNet-CNN and its 4096 length deep feature vector are used to predict its scene classification
 for each linear SVM model and we assign the one with highest confidence score.
 
-%I think one good way to write a paper is to leave the climax to the very last part. Or keep it coming little by little. You give it away too soon here. It's like making love and finishing in
-%3 minutes and now all the girl wants to do is getting rid of you and taking some fresh air to cool her foolish mind. Anyway, I suggest we go slow, we list our improvements one by one.
-%I will do it tomorrow morning. Lemme show you how to make a girl come!
-
-extract around 2000 bottom-up region
-proposals using selective search\cite{Uijlings:2013:SSO}, then extract
-4096-dimensional feature vectors for each region proposal using a large
-convolutional neural network (CNN) library Caffe\cite{Jia:2014:Caffe},
-after we got feature for each region proposal, we apply spatial pyramid and
-do max-pooling to find the features that contribute most. We then perform a
-L2 normalization procedure for all feature matrices. The final feature matrices
-then used for classification using multi-class linear SVMs classifier. Our
-method achieves a mean average precision (mAP) of 68.2953\% on dataset
-MIT-indoor67\cite{Quattoni:2009:RIS} without fine-tune on this dataset.
-For comparison, we implement using only 4096-dimensional feature vectors
-extracted from Caffe without region proposals, spatial pyramid matching 
-and max-pooling which has the mAP of 59.9507\%.
+Within this general framework, several methods can be explored to improve the feature representation. Instead of using the entire image for deep feature extraction, we can first
+select a set of region proposals (usually around 2000 for a high-resolution image) which are most informative about the image, then extract 4096-dimensional feature vectors for each region proposal. This improvement puts more weights on more informative regions. However, using the concadenated feature vector would result in an extremely high dimension (2000 $\times$ 4096), it is necessary to use some sparse coding scheme to represent the global feature pattern. In this paper, we adopt spatial pyramid because of its simplicity and effectiveness. To increase the generalization ability of our features and to reduce the impact of overfitting, we further apply $l-2$ normalization to the achieved feature vectors before we feed them to the one-vs-all SVMs. Figure~\ref{fig:system_overview} shows the pipeline of our system. We will describe the details in the following sections.
 
 \begin{figure*}[ht]
   \centering
