@@ -9,12 +9,12 @@ Previous work on Convolutional Neural Networks (CNNs) implies that it may
 capture the high-level representation of an image using a certain deep layer
 feature set. Our goal of this project is to answer one single question:
 \emph{Whether CNNs can help with the feature representation to extract
-high-level inforamtion of an image scene and thus improve the scene
+high-level information of an image scene and thus improve the scene
 classification precision?} We choose a CNN which is pre-trained on ImageNet
 dataset (ImageNet-CNN) since its a large-scale general object recognition
 datasets which consists of over 15 million labeled high-resolution images in
-over 22,000 categories. We use CNN pretrained on such dataset with the hope to
-reduce the chance of overfitting to certain scenes.  To utilize a pre-trained
+over 22,000 categories. We use CNN pre-trained on such dataset with the hope to
+reduce the chance of over-fitting to certain scenes.  To utilize a pre-trained
 ImageNet CNN and for the efficiency of the feature extraction process, we use
 a popular library: Caffe~\cite{Jia:2014:CCA}. To better observe the impact of a good
 feature representation, we choose a very difficult dataset: MIT-Indoor67 dataset,
@@ -68,7 +68,7 @@ A variety of recent research offers methods for generating category-independent
 region proposals for possible object locations. Selective search is one of the
 most widely used methods for generating possible object locations for use in
 object recognition\cite{Uijlings:2013:SSO}. We argue that same strategy can be
-adopted on the indoor scene classification task, becuase most indoor scenes can
+adopted on the indoor scene classification task, because most indoor scenes can
 be well characterized by objects they contain. Selective search can exploit
 local discriminative information with greatly reduced number of locations
 compared to an exhaustive search.  We use selective search to generate region
@@ -106,7 +106,7 @@ visual information of the image, and the final 16$\times$4096-dimension feature
 vector the low-level. We will show the improvement brought by this feature
 representation over a simple entire image 4096-dimension feature in
 Section~\ref{sec:results}. A $l2$ normalization is followed for better
-convergence and less overfitting.
+convergence and less over-fitting.
 
 \subsection{Model Training and Prediction}
 Support Vector Machine (SVM) is a useful technique for data classification.
