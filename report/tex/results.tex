@@ -20,27 +20,27 @@ one feature vectors for each entire image, instead of perform spatial pyramid
 and L2 normalization, we simply add labels and send them into the multi-class
 SVMs. Validation image feature vectors are also generated in the same way.
 
+% Table 1
+\begin{table*}[ht]
+	\caption{Comparison results on MIT-indoor67}
+	\centering
+	\begin{tabular}{l c c}
+	\hline \hline
+	Models                & Average Precision \\ \hline
+	$l2$ Norm + Selective Search + Spatial Pyramid & {\bf{68.2953\%}} \\
+	Selective Search + Spatial Pyramid & 68.0469\% \\
+        Entire Image CNN Features & 59.9507\% \\
+	\hline
+	\end{tabular}
+	\label{tab:overall}
+\end{table*}
+
 Our
 method achieves a mean average precision (mAP) of 68.2953\% on dataset
 MIT-indoor67\cite{Quattoni:2009:RIS} without fine-tune on this dataset.
 For comparison, we implement using only 4096-dimensional feature vectors
 extracted from Caffe without region proposals, spatial pyramid matching 
 and max-pooling which has the mAP of 59.9507\%.
-
-% Table 1
-\begin{table}[ht]
-	\caption{Comparison results on MIT-indoor67}
-	\centering
-	\begin{tabular}{l c c}
-	\hline \hline
-	Models                & Average Precision \\ \hline
-	Our Method  	      & {\bf{68.2953\%}} \\
-	Without Normalization & 68.0469\% \\
-        Only CNN Feature      & 59.9507\% \\
-	\hline
-	\end{tabular}
-	\label{tab:overall}
-\end{table}
 
 % overall results
 We compare our scene classification tasks with the performance without perform
