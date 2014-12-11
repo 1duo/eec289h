@@ -41,15 +41,14 @@ MIT-indoor67. For comparison, we implement the same method using only 4096-dimen
 feature vectors extracted from Caffe without region proposals, spatial pyramid, and max-pooling.
 Using selective search and spatial pyramid gives us a 8.1\% performance gain and introducing
 the $l2$ normalization gives us an extra 0.25\% performance gain. In most categories, we perform much
-better on the average precision. Some examples are shoes shop, bedroom, bowling, grocery store, hospital room and operating
-room. This might due to the region proposals and spatial pyramid technique
-allow us to better characterize the particular objects belong to the category.
-However, there are also some drops of average accuracy using our methods and
-mainly for these three categories: prison-cell, library and living room. These
-three categories are all relatively easier to be characterized by global
-spatial properties.
-\yzh{Need to talk more about the performance difference for different categories. Will update this after Yuduo put the
-new chart on.}
+better than the average precision. Some examples are shoes shop, bedroom, grocery store, hospital room and operating
+room. We achieve 100\% precision on three categories: cloister, florist, and bowling. This is because the region proposals and spatial pyramid technique
+allow us to better characterize the particular objects belong to the category. For those categories which achieve worst precision, the false positives are
+not evenly distributed either, but are focused on some very sensible categories. For example the top two false positive categories for auditorium are concert hall
+and movie theater.
+We also note some drops of average accuracy using our methods. The drops mainly happen for on the following three categories: prison-cell, library and living room.
+Note these three categories are all relatively easier to be characterized by global spatial properties (prison cell bars and books on shelves) so focusing on small regions
+might suppress the representation of the global scene.
 
 % top 5 best and top 5 worst table
 \begin{table}[ht]
@@ -57,7 +56,7 @@ new chart on.}
         \centering
         \begin{tabular}{l l l}
         \hline \hline
-        & Name           & Average Precision \\ \hline
+        & Name           & Avg. Prec./Top FP Ctgr. \\ \hline
         \multirow{5}{*}{Top 5 Best}
         & cloister       & 100\% \\
         & florist        & 100\% \\
@@ -66,11 +65,11 @@ new chart on.}
         & greenhouse     & 94.74\% \\
         \hline
         \multirow{5}{*}{Top 5 Worst}
-        & livingroom     & 20\% \\
-        & lobby          & 30\% \\
-        & deli           & 31.58\% \\
-        & office         & 33.33\% \\
-        & airport inside & 35\% \\
+        & livingroom     & 20\%/bedroom \\
+        & lobby          & 30\%/jelleryshop \\
+        & deli           & 31.58\%/bakery \\
+        & office         & 33.33\%/computer\_room \\
+        & airport inside & 35\%/subway \\
         \hline
         \end{tabular}
         \label{tab:overall}
