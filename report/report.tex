@@ -14,6 +14,17 @@
 % run, let it finish, and you should be clear).
 \usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
 
+\usepackage{ifthen,color}
+\definecolor{darkgreen}{rgb} {0.0,0.5,0.0}
+\definecolor{darkblue}{rgb} {0.0,0.0,0.5}
+\definecolor{bluegreen}{rgb}{0.0,0.5,0.5}
+\newcommand{\todo}[1]           {{\color{red} #1}}
+\newcommand{\yzh}[1]{{\it{\color{darkblue}(YZH) #1}}}
+\newcommand{\yuduo}   [1]{{{\color{darkgreen}(John) #1}}}
+
+\newcommand{\final}{0}
+\ifthenelse{\equal{\final}{1}}{\renewcommand{\yuduo}[1]{}\renewcommand{\yzh}[1]{}}{}
+
 \cvprfinalcopy % *** Uncomment this line for the final submission
 
 \def\cvprPaperID{42} % *** Enter the CVPR Paper ID here

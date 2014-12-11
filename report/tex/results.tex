@@ -4,17 +4,15 @@
 %examples, as appropriate.
 
 In this section, we evaluate our method on the MIT-indoor67 dataset. Suggested training and
-testing list of images are used to do the training (80 images per class)
-and validation (20 images per class). There are at least 100 images per
-scene and all in jpeg format.
+testing list of images are used to do the training (80 images per class) and validation (20
+images per class), all images are in jpeg format.
 
-Multi-class classification is done with a support vector machine (SVM) trained
-using one-versus-all rule, that is, each classifier is learned to separate each
-class from the rest of classes. Test image is assigned the label of the
-classifier with the highest response.Scene classification performance is
-evaluated by average multi-class classification accuracy over all scene classes.
+Multi-class classification is done with a 67 SVMs trained using one-versus-all rule, that is, each
+classifier is learned to separate each class from the rest of classes. Test image is assigned the
+label of the class with the highest confidence score. Scene classification performance is
+evaluated by the average multi-class classification accuracy over all scene classes.
 
-For comparison purposes, we implement with the same procedure but only use
+For comparison purpose, we implement with the same procedure but only use
 the extracted layer 7 4096-dimensional feature vectors from Caffe. After we get
 one feature vectors for each entire image, instead of perform spatial pyramid
 and L2 normalization, we simply add labels and send them into the multi-class
@@ -35,26 +33,23 @@ SVMs. Validation image feature vectors are also generated in the same way.
 	\label{tab:overall}
 \end{table*}
 
-Our
-method achieves a mean average precision (mAP) of 68.2953\% on dataset
-MIT-indoor67\cite{Quattoni:2009:RIS} without fine-tune on this dataset.
-For comparison, we implement using only 4096-dimensional feature vectors
-extracted from Caffe without region proposals, spatial pyramid matching 
-and max-pooling which has the mAP of 59.9507\%.
-
-% overall results
-We compare our scene classification tasks with the performance without perform
-L2 normalization and the performance of using only the features extracted from
-CNN, summarized in Table~\ref{tab:overall}. Around 14\% improvement of using
-region proposals, max-pooling and spatial pyramid are shown. In majority of
-categories, we perform much better on the average precision. Some examples
-are shoes shop, bedroom, bowling, grocery store, hospital room and operating
+We compare our scene classification performance with two other methods: 1) using only the
+features extracted from the entire image; 2) using selective search and spatial pyramid, but without the
+$l2$ normalization. The summary of our performance comparison is listed in Table~\ref{tab:overall}.
+Our method achieves a mean average precision (mAP) of 68.2953\% on dataset
+MIT-indoor67. For comparison, we implement the same method using only 4096-dimensional
+feature vectors extracted from Caffe without region proposals, spatial pyramid, and max-pooling.
+Using selective search and spatial pyramid gives us a 8.1\% performance gain and introducing
+the $l2$ normalization gives us an extra 0.25\% performance gain. In most categories, we perform much
+better on the average precision. Some examples are shoes shop, bedroom, bowling, grocery store, hospital room and operating
 room. This might due to the region proposals and spatial pyramid technique
 allow us to better characterize the particular objects belong to the category.
 However, there are also some drops of average accuracy using our methods and
 mainly for these three categories: prison-cell, library and living room. These
 three categories are all relatively easier to be characterized by global
 spatial properties.
+\yzh{Need to talk more about the performance difference for different categories. Will update this after Yuduo put the
+new chart on.}
 
 \iffalse
 % Table 2
