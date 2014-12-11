@@ -20,17 +20,17 @@ SVMs. Validation image feature vectors are also generated in the same way.
 
 % Table 1
 \begin{table*}[ht]
-	\caption{Comparison results on MIT-indoor67}
-	\centering
-	\begin{tabular}{l c c}
-	\hline \hline
-	Models                & Average Precision \\ \hline
-	$l2$ Norm + Selective Search + Spatial Pyramid & {\bf{68.2953\%}} \\
-	Selective Search + Spatial Pyramid & 68.0469\% \\
+        \caption{Comparison results on MIT-indoor67}
+        \centering
+        \begin{tabular}{l c c}
+        \hline \hline
+        Models                & Average Precision \\ \hline
+        $l2$ Normlization + Selective Search + Spatial Pyramid & {\bf{68.2953\%}} \\
+        Selective Search + Spatial Pyramid & 68.0469\% \\
         Entire Image CNN Features & 59.9507\% \\
-	\hline
-	\end{tabular}
-	\label{tab:overall}
+        \hline
+        \end{tabular}
+        \label{tab:overall}
 \end{table*}
 
 We compare our scene classification performance with two other methods: 1) using only the
@@ -51,22 +51,31 @@ spatial properties.
 \yzh{Need to talk more about the performance difference for different categories. Will update this after Yuduo put the
 new chart on.}
 
-\iffalse
-% Table 2
+% top 5 best and top 5 worst table
 \begin{table}[ht]
-        \caption{Average Acurracy that Drops}
+        \caption{Top 5 Best and Top 5 Worst Results}
         \centering
-        \begin{tabular}{l c c}
+        \begin{tabular}{l l l}
         \hline \hline
-        Category    & our method & only feature \\ \hline
-        prison-cell & 45\%       & 70\% \\
-        library     & 45\%       & 70\% \\
-        livingroom  & 20\%       & 40\% \\
+        & Name           & Average Precision \\ \hline
+        \multirow{5}{*}{Top 5 Best}
+        & cloister       & 100\% \\
+        & florist        & 100\% \\
+        & bowling        & 100\% \\
+        & poolinside     & 95\% \\
+        & greenhouse     & 94.74\% \\
+        \hline
+        \multirow{5}{*}{Top 5 Worst}
+        & livingroom     & 20\% \\
+        & lobby          & 30\% \\
+        & deli           & 31.58\% \\
+        & office         & 33.33\% \\
+        & airport inside & 35\% \\
         \hline
         \end{tabular}
         \label{tab:overall}
 \end{table}
-\fi
+
 % compare with other paper results
 
 % heatmap visulizations

@@ -4,6 +4,7 @@
 \usepackage{times}
 \usepackage{epsfig}
 \usepackage{graphicx}
+\usepackage{multirow}
 \usepackage{amsmath}
 \usepackage{amssymb}
 
@@ -37,15 +38,20 @@
 %%%%%%%%% TITLE
 \title{Scene Classification with Deep Convolutional Neural Networks}
 
-\author{Yangzihao Wang and Yuduo Wu\\
+\author{Yangzihao Wang\\
 University of California, Davis\\
-{\tt\small \{yzhwang,yudwu\}@ucdavis.edu}
+{\tt\small yzhwang@ucdavis.edu}
 % For a paper whose authors are all at the same institution,
 % omit the following lines up until the closing ``}''.
 % Additional authors and addresses can be added with ``\and'',
 % just like the second author.
 % To save space, use either the email address or home page, not both
+\and
+Yuduo Wu\\
+University of California, Davis\\
+{\tt\small yudwu@ucdavis.edu}
 }
+
 \maketitle
 %\thispagestyle{empty}
 
@@ -80,9 +86,10 @@ ImageNet.
 \input{tex/results}
 
 %-------------------------------------------------------------------------
-\section{Conclusions}
 
-briefly summarize the main idea and results, and possible future work.
+\section{Conclusions}
+\label{sec:conclusion}
+\input{tex/conclusion}
 
 {\small
 \bibliographystyle{ieee}
