@@ -7,7 +7,11 @@ training and testing images from the MIT-indoor67 dataset are shown in Figure.
   \centering
   \includegraphics[scale=0.16]{img/matrix.pdf}
   \centering
-  \caption{From the confusion matrix of all 67 categories, we notice that several
+  \caption{Confusion Matrix for the scene categorey dataset. Classification
+results for individual classes are listed along the diagonal. The entry in the
+$i$th row and $j$th column is the number of images from class $i$ that are
+misidentified as class $j$.
+From the confusion matrix of all 67 categories, we notice that several
 pairs of categories are relatively easier to be confused and misclassified by the
 SVMs with each other, such as bakery and deli, living room and bedroom as well as
 bookstore and library.}
@@ -26,7 +30,6 @@ another. The first pair is bakery and deli which have very similar patterns of
 listing of breads and sandwiches. The second pair is living rooms and bedrooms,
 living room images may include some beds or beds-like sofas, which is almost
 identical to the scenes in bedroom. It is extremely hard, even for human beings, to 
-be able distinguish between library and bookstore.
-the scene in bedrooms.}
+be able distinguish between library and bookstore.}
   \label{fig:sample}
 \end{figure*}
