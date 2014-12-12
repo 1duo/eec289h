@@ -3,7 +3,8 @@
 %and what you learned from the results. Provide figures, tables, and qualitative
 %examples, as appropriate.
 
-In this section, we evaluate our method on the MIT-indoor67 dataset. Suggested training and
+In this section, we evaluate our method on the MIT-indoor67 dataset.
+Suggested training and
 testing list of images are used to do the training (80 images per class)
 and validation (20 images per class). There are at least 100 images per
 scene and all in jpeg format.
@@ -22,24 +23,24 @@ SVMs. Validation image feature vectors are also generated in the same way.
 
 % Table 1
 \begin{table*}[ht]
-	\caption{Comparison results on MIT-indoor67}
-	\centering
-	\begin{tabular}{l c c}
-	\hline \hline
-	Models                & Average Precision \\ \hline
-	$l2$ Norm + Selective Search + Spatial Pyramid & {\bf{68.2953\%}} \\
-	Selective Search + Spatial Pyramid & 68.0469\% \\
+        \caption{Comparison results on MIT-indoor67}
+        \centering
+        \begin{tabular}{l c c}
+        \hline \hline
+        Models                & Average Precision \\ \hline
+        $l2$ Normlization + Selective Search + Spatial Pyramid & {\bf{68.2953\%}} \\
+        Selective Search + Spatial Pyramid & 68.0469\% \\
         Entire Image CNN Features & 59.9507\% \\
-	\hline
-	\end{tabular}
-	\label{tab:overall}
+        \hline
+        \end{tabular}
+        \label{tab:overall}
 \end{table*}
 
 Our
 method achieves a mean average precision (mAP) of 68.2953\% on dataset
 MIT-indoor67\cite{Quattoni:2009:RIS} without fine-tune on this dataset.
 For comparison, we implement using only 4096-dimensional feature vectors
-extracted from Caffe without region proposals, spatial pyramid matching 
+extracted from Caffe without region proposals, spatial pyramid matching
 and max-pooling which has the mAP of 59.9507\%.
 
 % overall results
@@ -56,22 +57,31 @@ mainly for these three categories: prison-cell, library and living room. These
 three categories are all relatively easier to be characterized by global
 spatial properties.
 
-\iffalse
-% Table 2
+% top 5 best and top 5 worst table
 \begin{table}[ht]
-        \caption{Average Acurracy that Drops}
+        \caption{Top 5 Best and Top 5 Worst Results}
         \centering
-        \begin{tabular}{l c c}
+        \begin{tabular}{l l l}
         \hline \hline
-        Category    & our method & only feature \\ \hline
-        prison-cell & 45\%       & 70\% \\
-        library     & 45\%       & 70\% \\
-        livingroom  & 20\%       & 40\% \\
+        & Name           & Average Precision \\ \hline
+        \multirow{5}{*}{Top 5 Best}
+        & cloister       & 100\% \\
+        & florist        & 100\% \\
+        & bowling        & 100\% \\
+        & poolinside     & 95\% \\
+        & greenhouse     & 94.74\% \\
+        \hline
+        \multirow{5}{*}{Top 5 Worst}
+        & livingroom     & 20\% \\
+        & lobby          & 30\% \\
+        & deli           & 31.58\% \\
+        & office         & 33.33\% \\
+        & airport inside & 35\% \\
         \hline
         \end{tabular}
         \label{tab:overall}
 \end{table}
-\fi
+
 % compare with other paper results
 
 % heatmap visulizations
