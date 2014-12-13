@@ -33,6 +33,7 @@ SVMs. Validation image feature vectors are also generated in the same way.
         \label{tab:overall}
 \end{table*}
 
+\subsection{Quantitative Evaluation}
 We compare our scene classification performance with two other methods: 1) using only the
 features extracted from the entire image; 2) using selective search and spatial pyramid, but without the
 $l2$ normalization. The summary of our performance comparison is listed in Table~\ref{tab:overall}.
@@ -50,7 +51,7 @@ We also note some drops of average accuracy using our methods. The drops mainly 
 Note these three categories are all relatively easier to be characterized by global spatial properties (prison cell bars and books on shelves) so focusing on small regions
 might suppress the representation of the global scene.
 
-% top 5 best and top 5 worst table
+% top 5 best and top 5 worst table (Table 2)
 \begin{table}[ht]
         \caption{Top 5 Best and Top 5 Worst Results}
         \centering
@@ -75,6 +76,26 @@ might suppress the representation of the global scene.
         \label{tab:overall}
 \end{table}
 
+Table~\ref{tab:compare} compares the performance of our method against various other scene classification methods. Note that methods using CNNs all show significant improvements of the performance.
+Also, our method which uses selective search and spatial pyramid achieves better performance than Zhou et al.'s work on both ImageNet-CNN and Places-CNN, a CNN trained on a dataset specific created for places.
+
 % compare with other paper results
+% Table 3
+\begin{table}[ht]
+        \caption{Comparison to other methods}
+        \centering
+        \begin{tabular}{l c c}
+        \hline \hline
+        Method                & Average Precision \\ \hline
+        Object Bank~\protect\cite{Li:2010:OBA} & 37.6 \\
+        DPM+GIST-color+SP~\protect\cite{Pandey:2011:SRW} & 43.1 \\
+        ImageNet-CNN feature~\protect\cite{Zhou:2014:LDF} & 56.79 \\
+        Our Method & 68.3 \\
+        Places-CNN feature~\protect\cite{Zhou:2014:LDF} & 68.24 \\
+        \hline
+        \end{tabular}
+        \label{tab:compare}
+\end{table}
 
 % heatmap visulizations
+\subsection{Qualitative Evaluation}
