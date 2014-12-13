@@ -35,7 +35,7 @@ for each linear SVM model and we assign the one with highest confidence score.
 
 \begin{figure*}[ht]
   \centering
-  \includegraphics[width=0.8\textwidth]{img/overview.pdf}
+  \includegraphics[width=0.9\textwidth]{img/overview.pdf}
   \centering
   \caption{The overview of our system. For an input image, a selective search
   algorithm is applied first to get roughly 2000 regions of interest. We then
@@ -117,7 +117,7 @@ LibSVM\cite{Chang:2011:CC01a} is an integrated software for support vector
 classification that is widely used in variety of classification tasks. It
 supports multi-class classification which is used in this project. We use
 libSVM's linear classifier with confidence value option to train 67 one-vs-all
-models each for one category in our MIT-indoor67 dataset. During the scene
-classification phase, for every testing image, we run the prediction against
-all 67 categories and classify the image to the category which has the highest
-confidence score.
+linear models each for one category in our MIT-indoor67 dataset. During the
+scene classification phase, for every testing image, we run the prediction
+against all 67 categories and classify the image to the category which has
+the highest confidence score.
